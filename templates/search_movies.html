@@ -1,0 +1,41 @@
+{% extends '_layout.html' %}
+
+{% block title %}Movie Rating App | Search Movie Ratings{% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Search Movie Ratings</h1>
+<form action="/movies/search" method="get" class="mb-5">
+  <label for="q" class="form-label">Search by title</label>  
+  <div class="input-group">
+    <input type="text" name="q" id="q" class="form-control">
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</form>
+<!-- If q is passed to the template, we did a search already -->
+{% if q != '' %}
+{% if movies|length != 0 %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Director</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in movies %}
+      <tr>
+        <td><a href="/movies/{{ movie.movie_id }}">{{ movie.title }}</a></td>
+        <td>{{ movie.director }}</td>
+        <td>{{ movie.rating }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No movies found</p>
+{% endif %}
+{% endif %}
+{% endblock %}

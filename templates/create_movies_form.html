@@ -1,0 +1,28 @@
+{% extends '_layout.html' %}
+
+{% block title %}Movie Rating App | Create Movie Rating{% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Create Movie Rating</h1>
+<p class="mb-3">Create a movie rating below</p>
+<form action="/movies" method="post">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" id="title" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="director" class="form-label">Director</label>
+    <input type="text" name="director" id="director" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="rating" class="form-label">Rating</label>
+    <select name="rating" id="rating" class="form-select" required>
+      <option value="" disabled selected>Select Rating</option>
+      {% for num in range(1, 6) %}
+      <option value="{{ num }}">{{ num }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Movie</button>
+</form>
+{% endblock %}
