@@ -1,9 +1,10 @@
+
 name: "Test Workflow"
 
 on:
   push:
     branches:
-    "**"
+      "**"
 
 jobs:
   test_branch:
@@ -19,7 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-         run: pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Create DB
         run: DATABASE_URL=sqlite:///test.db python create_db.py
